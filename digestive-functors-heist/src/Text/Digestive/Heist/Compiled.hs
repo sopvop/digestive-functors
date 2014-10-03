@@ -61,6 +61,7 @@ import           Control.Monad            (mplus)
 import           Control.Monad.Trans      (MonadIO, liftIO)
 import           Data.Function            (on)
 import           Data.List                (unionBy)
+import           Data.Map.Syntax          ((##))
 import           Data.Monoid              (mappend, mconcat, mempty, (<>))
 import           Data.Text                (Text)
 import qualified Data.Text                as T
@@ -140,7 +141,7 @@ formSplice' ss as = deferMap return $ \getView -> do
     let tree = X.Element "form"
                  (addAttrs attrs
                     [ ("method", "POST")
-                    , ("enctype", "${dfEncType}")
+                    , ("enctype", "${h:dfEncType}")
                     ])
                  (X.childNodes node)
         action = runNode tree

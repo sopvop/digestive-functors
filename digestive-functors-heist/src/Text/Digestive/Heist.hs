@@ -57,6 +57,7 @@ import           Control.Monad         (liftM, mplus)
 import           Control.Monad.Trans
 import           Data.Function         (on)
 import           Data.List             (unionBy)
+import           Data.Map.Syntax       ((##))
 import           Data.Maybe            (fromMaybe)
 import           Data.Monoid           (mappend)
 import           Data.Text             (Text)
@@ -97,7 +98,7 @@ digestiveSplices view = do
     "dfChildErrorList"   ## dfChildErrorList view
     "dfSubView"          ## dfSubView view
     "dfIfChildErrors"    ## dfIfChildErrors view
-    
+
 
 
 --------------------------------------------------------------------------------
@@ -139,7 +140,7 @@ addAttrs = unionBy (on (==) fst)
 
 
 --------------------------------------------------------------------------------
--- | 
+-- |
 setDisabled :: Text -> View v -> [(Text, Text)] -> [(Text, Text)]
 setDisabled ref view = if viewDisabled ref view then (("disabled",""):) else id
 
@@ -433,7 +434,7 @@ disableOnclick ref view =
 --   dfListItem - This tag must surround the markup for a single list item.
 --     It surrounds all of its children with a div with id \"foo.items\" and
 --     class \"inputList\".
--- 
+--
 -- Attribute Splices:
 --   itemAttrs - Attribute you should use on div, span, etc that surrounds all
 --     the markup for a single list item.  This splice expands to an id of
